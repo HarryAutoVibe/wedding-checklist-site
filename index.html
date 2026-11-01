@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#381f28" />
+    <meta name="description" content="Harmeet and Agnes's private wedding planning checklist." />
+    <meta name="robots" content="noindex, nofollow, noarchive" />
+    <title>Harmeet & Agnes — Our Wedding Journey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="petals" aria-hidden="true"></div>
+
+    <section class="access-gate" id="accessGate" aria-labelledby="gateTitle">
+      <div class="gate-scrim"></div>
+      <div class="gate-card glass">
+        <p class="eyebrow">A private little corner for two</p>
+        <h1 id="gateTitle">Harmeet <span>&</span> Agnes</h1>
+        <p class="gate-date">15 January 2027 · Tbilisi</p>
+
+        <form id="accessForm" class="access-form">
+          <label class="code-field">
+            <span>Your email address</span>
+            <input id="loginEmail" type="email" autocomplete="email" placeholder="you@example.com" required />
+          </label>
+          <p class="form-error" id="accessError" role="alert"></p>
+          <button class="primary-button" id="signInButton" type="submit">Email me a sign-in link <span>→</span></button>
+          <p class="privacy-note" id="loginStatus" role="status">An invitation-only space for Harmeet and Agnes.</p>
+        </form>
+      </div>
+    </section>
+
+    <div class="app-shell" id="appShell" hidden>
+      <header class="hero">
+        <nav class="topbar">
+          <a class="brand" href="#top" aria-label="Back to top">
+            <span class="brand-mark">H<span>&</span>A</span>
+            <span>Our wedding journey</span>
+          </a>
+          <div class="nav-actions">
+            <span class="sync-pill" id="syncPill"><i></i> Connecting…</span>
+            <button class="profile-button" id="profileButton" type="button" aria-label="Sign out">
+              <span id="profileInitial">H</span>
+              <strong id="profileName">Harmeet</strong>
+            </button>
+          </div>
+        </nav>
+
+        <div class="hero-content" id="top">
+          <p class="eyebrow">The countdown is on</p>
+          <h1>One beautiful day.<br /><em>A lifetime together.</em></h1>
+          <p class="hero-copy">A calm, shared place for every document, flight, fitting and celebration on our way to Tbilisi.</p>
+
+          <div class="countdown" aria-label="Countdown to the wedding">
+            <div><strong id="daysLeft">0</strong><span>days</span></div>
+            <div><strong id="hoursLeft">0</strong><span>hours</span></div>
+            <div><strong id="minutesLeft">0</strong><span>minutes</span></div>
+            <div><strong id="secondsLeft">0</strong><span>seconds</span></div>
+          </div>
+        </div>
+
+        <div class="scroll-cue" aria-hidden="true"><span></span>Scroll to our plan</div>
+      </header>
+
+      <main>
+        <section class="overview section-wrap" aria-labelledby="overviewTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow warm">Our shared plan</p>
+              <h2 id="overviewTitle">Everything, beautifully in place</h2>
+            </div>
+            <button class="secondary-button" id="addTaskButton" type="button">+ Add a task</button>
+          </div>
+
+          <div class="overview-grid">
+            <article class="progress-card dark-card">
+              <div class="progress-ring" id="progressRing" style="--progress: 0">
+                <div><strong id="progressPercent">0%</strong><span>complete</span></div>
+              </div>
+              <div>
+                <p class="card-kicker">Together, step by step</p>
+                <h3 id="progressMessage">The journey begins here.</h3>
+                <p id="progressDetail">0 of 0 tasks completed</p>
+              </div>
+            </article>
+
+            <article class="stat-card">
+              <span class="stat-icon">✓</span>
+              <strong id="doneCount">0</strong>
+              <p>Tasks completed</p>
+            </article>
+            <article class="stat-card">
+              <span class="stat-icon">↗</span>
+              <strong id="priorityCount">0</strong>
+              <p>Priority tasks</p>
+            </article>
+            <article class="stat-card photo-stat">
+              <div>
+                <span>Wedding day</span>
+                <strong>15.01.27</strong>
+                <p>Tbilisi, Georgia</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="checklist-section section-wrap" aria-labelledby="checklistTitle">
+          <div class="section-heading checklist-heading">
+            <div>
+              <p class="eyebrow warm">The checklist</p>
+              <h2 id="checklistTitle">What comes next</h2>
+            </div>
+            <div class="filters" role="group" aria-label="Filter tasks">
+              <button class="filter active" data-filter="all" type="button">All</button>
+              <button class="filter" data-filter="open" type="button">To do</button>
+              <button class="filter" data-filter="priority" type="button">Priority</button>
+              <button class="filter" data-filter="mine" type="button">Mine</button>
+              <button class="filter" data-filter="done" type="button">Done</button>
+            </div>
+          </div>
+
+          <div class="category-grid" id="categoryGrid"></div>
+        </section>
+
+        <section class="love-note section-wrap">
+          <div class="love-note-card">
+            <p>“The best thing to hold onto in life is each other.”</p>
+            <span>One task closer to forever</span>
+          </div>
+        </section>
+      </main>
+
+      <footer>
+        <span>Made with care for Harmeet & Agnes</span>
+        <span>15 January 2027 · Tbilisi</span>
+      </footer>
+    </div>
+
+    <dialog id="taskDialog" class="task-dialog">
+      <form id="taskForm" method="dialog">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow warm">A new little step</p>
+            <h2>Add a task</h2>
+          </div>
+          <button class="icon-button" type="button" id="closeTaskButton" aria-label="Close dialog">×</button>
+        </div>
+
+        <label>Task name<input name="title" required maxlength="100" placeholder="What needs to happen?" /></label>
+        <div class="form-grid">
+          <label>Category
+            <select name="category">
+              <option value="Documents & registrations">Documents & registrations</option>
+              <option value="Visas & travel">Visas & travel</option>
+              <option value="Flights & stays">Flights & stays</option>
+              <option value="Wedding details">Wedding details</option>
+              <option value="People & celebrations">People & celebrations</option>
+            </select>
+          </label>
+          <label>Owner
+            <select name="owner">
+              <option value="Both">Both</option>
+              <option value="Harmeet">Harmeet</option>
+              <option value="Agnes">Agnes</option>
+            </select>
+          </label>
+        </div>
+        <div class="form-grid">
+          <label>Target date<input name="due" type="date" /></label>
+          <label class="priority-check"><input name="priority" type="checkbox" /> Mark as priority</label>
+        </div>
+        <label>Note<textarea name="note" rows="3" maxlength="240" placeholder="Useful detail, dependency or reminder"></textarea></label>
+        <div class="dialog-actions">
+          <button class="secondary-button" value="cancel" type="button" id="cancelTaskButton">Cancel</button>
+          <button class="primary-button compact" value="default" type="submit">Add task</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+    <script src="auth.js"></script>
+  </body>
+</html>
