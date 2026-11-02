@@ -179,14 +179,19 @@ button { cursor: pointer; }
 }
 .brand { display: flex; align-items: center; gap: 12px; color: white; text-decoration: none; font-size: 13px; font-weight: 600; }
 .brand-mark {
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 45px;
+  gap: 1px;
   width: 45px;
   height: 45px;
   border: 1px solid rgba(255,255,255,.55);
   border-radius: 50%;
   font-family: "Playfair Display", serif;
-  font-size: 17px;
+  font-size: 15px;
+  line-height: 1;
+  white-space: nowrap;
 }
 .brand-mark span { color: #efd6b1; font-style: italic; }
 .nav-actions { display: flex; align-items: center; gap: 12px; }
@@ -298,6 +303,18 @@ footer { display: flex; justify-content: space-between; gap: 20px; padding: 24px
 .entrance-confetti { z-index: 75; width: 8px; height: 15px; animation: confetti-welcome 1.85s cubic-bezier(.14,.72,.24,1) forwards; }
 .entrance-confetti.shape-1 { width: 9px; height: 9px; border-radius: 50%; }
 .entrance-confetti.shape-2 { width: 5px; height: 18px; border-radius: 999px; }
+
+.sweetheart-welcome { width: min(560px, calc(100% - 32px)); max-height: calc(100svh - 32px); overflow-y: auto; padding: clamp(30px, 6vw, 56px) 28px; border: 1px solid #dabb91; border-radius: 30px; text-align: center; color: var(--wine-dark); background: radial-gradient(ellipse at top, #fffaf4, #f4e2df); box-shadow: var(--shadow); }
+.sweetheart-welcome::backdrop { background: rgba(30,15,21,.68); backdrop-filter: blur(7px); }
+.sweetheart-heart { display: block; margin-bottom: 16px; color: var(--wine); font-size: 42px; }
+.sweetheart-welcome h2 { margin: 0; font-family: "Playfair Display", serif; font-size: clamp(34px, 7vw, 52px); line-height: 1.12; }
+.sweetheart-copy { margin: 24px auto; max-width: 350px; font-size: 18px; line-height: 1.75; }
+.sweetheart-copy span { display: inline-block; animation: love-word-in .8s both; animation-delay: calc(var(--word) * 90ms + 300ms); }
+.sweetheart-signature { margin: 0 0 28px; color: var(--muted); font-family: "Playfair Display", serif; font-style: italic; font-size: 18px; }
+.sweetheart-welcome > :not(.sweetheart-copy) { animation: love-word-in .7s both; }
+.welcome-confetti { position: fixed; inset: 0; overflow: hidden; pointer-events: none; }
+.sweetheart-welcome .welcome-confetti { animation: none; }
+@keyframes love-word-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 
 @keyframes photo-breathe { to { transform: scale(1.035) translate3d(-.6%, -.4%, 0); } }
 @keyframes scroll-pulse { 0%, 100% { transform: scaleY(.55); transform-origin: top; opacity: .4; } 50% { transform: scaleY(1); opacity: 1; } }

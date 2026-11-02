@@ -18,6 +18,7 @@ function lockChecklist() {
   sessionGeneration += 1;
   currentUserId = null;
   activeProfile = "";
+  clearSweetheartWelcome();
   state = { tasks: [] };
   appShell.hidden = true;
   accessGate.hidden = false;

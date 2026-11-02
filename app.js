@@ -26,8 +26,36 @@ function enterApp(profile) {
   document.getElementById("profileName").textContent = profile;
   render();
   startPetals();
-  setTimeout(celebrateEntrance, 180);
+  if (profile === "Agnes") showSweetheartWelcome();
+  else setTimeout(() => { if (activeProfile === profile) celebrateEntrance(); }, 180);
 }
+
+const sweetheartWelcome = document.getElementById("sweetheartWelcome");
+
+function showSweetheartWelcome() {
+  document.getElementById("sweetheartTitle").textContent = "Welcome, my sweetheart";
+  const copy = document.getElementById("sweetheartCopy");
+  copy.replaceChildren();
+  "I made this out of so much love for you.".split(" ").forEach((word, index) => {
+    const span = document.createElement("span");
+    span.textContent = word;
+    span.style.setProperty("--word", index);
+    copy.append(span, document.createTextNode(" "));
+  });
+  document.getElementById("sweetheartSignature").textContent = "Always yours, Harmeet";
+  sweetheartWelcome.showModal();
+  celebrateEntrance(sweetheartWelcome.querySelector(".welcome-confetti"));
+}
+
+function clearSweetheartWelcome() {
+  sweetheartWelcome.close();
+  sweetheartWelcome.querySelector(".welcome-confetti").replaceChildren();
+  for (const id of ["sweetheartTitle", "sweetheartCopy", "sweetheartSignature"]) {
+    document.getElementById(id).replaceChildren();
+  }
+}
+
+document.getElementById("closeWelcomeButton").addEventListener("click", () => sweetheartWelcome.close());
 
 function render() {
   renderChecklist();
@@ -217,7 +245,7 @@ function celebrate(source) {
   }
 }
 
-function celebrateEntrance() {
+function celebrateEntrance(container = document.body) {
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const colors = ["#6e2d43", "#c59a59", "#e3a9ad", "#fff0d9", "#f5d8a7", "#ffffff"];
   const origins = [18, 50, 82];
@@ -233,7 +261,7 @@ function celebrateEntrance() {
       piece.style.setProperty("--y", `${190 + Math.random() * 420}px`);
       piece.style.setProperty("--spin", `${360 + Math.random() * 900}deg`);
       piece.style.animationDelay = `${Math.random() * 180}ms`;
-      document.body.appendChild(piece);
+      container.appendChild(piece);
       setTimeout(() => piece.remove(), 2200);
     }
   });
