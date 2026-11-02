@@ -144,6 +144,10 @@ button { cursor: pointer; }
 .primary-button.compact { width: auto; margin: 0; }
 .secondary-button { padding: 11px 18px; color: var(--wine-dark); background: white; border: 1px solid var(--line); }
 .privacy-note { margin: 12px 0 0; text-align: center; color: var(--muted); font-size: 11px; }
+.google-button { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; padding: 14px 20px; border: 1px solid #747775; border-radius: 999px; background: #fff; color: #1f1f1f; font-weight: 600; min-height: 48px; }
+.google-button:hover { background: #f8faff; box-shadow: 0 2px 7px #00000015; }
+.google-button:focus-visible { outline: 3px solid #4285f4; outline-offset: 3px; }
+.google-button:disabled { opacity: .65; cursor: wait; }
 .form-error { min-height: 18px; margin: 7px 0 -4px; color: #a3233e; font-size: 12px; }
 
 .hero {

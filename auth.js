@@ -104,13 +104,18 @@ document.getElementById("accessForm").addEventListener("submit", async event => 
   if (!backend) { status.textContent = "Private sign-in is being configured. Please check back shortly."; return; }
   button.disabled = true;
   try {
-    const { error } = await backend.auth.signInWithOtp({
-      email: document.getElementById("loginEmail").value.trim().toLowerCase(),
-      options: { shouldCreateUser: false, emailRedirectTo: new URL("./", location.href).href }
+    status.textContent = "Opening Google sign-in…";
+    const { error } = await backend.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: new URL("./", location.href).href,
+        queryParams: { prompt: "select_account" }
+      }
     });
     if (error) throw error;
-    status.textContent = "If this email is invited, a sign-in link is on its way. Check your inbox and spam folder.";
-  } catch { status.textContent = "Could not send a sign-in link. Check your email address and try again shortly."; }
+  } catch {
+    status.textContent = "Google sign-in could not start. Please try again or ask Harmeet to check the Google sign-in configuration.";
+  }
   finally { button.disabled = false; }
 });
 
@@ -121,6 +126,11 @@ document.getElementById("profileButton").addEventListener("click", async () => {
 });
 
 if (backend) {
+  const callbackError = new URLSearchParams(location.hash.slice(1)).get("error_description") || new URLSearchParams(location.search).get("error_description");
+  if (callbackError) {
+    document.getElementById("loginStatus").textContent = "Google sign-in was cancelled or could not be completed. Please try again with your invited account.";
+    history.replaceState(null, "", location.pathname);
+  }
   backend.auth.onAuthStateChange((_event, session) => {
     setTimeout(() => unlockSession(session), 0);
   });
